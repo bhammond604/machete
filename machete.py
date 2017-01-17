@@ -89,6 +89,9 @@ def main():
 	
 	# If use_threading is True, handle thread creation
 	if use_threading == True:
+		# Display status message
+		print("[I] Starting multithreaded attack...")
+		
 		# Dump wordlist to list
 		flist = machete.open_list(wordlist)
 		
@@ -105,6 +108,9 @@ def main():
 
 	# If use_threading is not true, simply execute the attack using only 1 thread
 	else:
+		# Display status message
+		print("[I] Starting attack...")
+		
 		# Open wordlist
 		flist = machete.open_list(wordlist)
 		

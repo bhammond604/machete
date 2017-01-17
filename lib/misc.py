@@ -16,7 +16,7 @@ def open_list(wordlist):
 		f = open(wordlist, "r")
 	except IOError:
 		# Display error message and exit
-		print("[E] Error opening wordlist")
+		print("[E] Error opening wordlist!")
 		exit(0)
 	
 	# Display optimizing message
@@ -74,6 +74,11 @@ def determine_algorithm(algorithm):
 	elif algorithm == "whirlpool":
 		# Set attack decorator to machete_whirlpool
 		attack = machete_whirlpool
+		
+	# If invalid algorithm
+	else:
+		# Display error message and exit
+		print("[E] Invalid algorithm specified!")
 		
 	# Return attack
 	return attack
