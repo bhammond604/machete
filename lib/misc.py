@@ -1,10 +1,10 @@
 # Import modules
 import machete_md5
-#import machete_sha1
-#import machete_sha256
-#import machete_sha512
-#import machete_dsa
-#import machete_whirlpool
+import machete_sha1
+import machete_sha256
+import machete_sha512
+import machete_dsa
+import machete_whirlpool
 
 # Define open_list() function
 def open_list(wordlist):
@@ -50,30 +50,30 @@ def determine_algorithm(algorithm):
 		# Set attack decorator to machete_md5()
 		attack = machete_md5.crack
 	
-	## If SHA-1
-	#elif algorithm == "sha1":
-		## Set attack decorator to machete_sha1
-		#attack = machete_sha1.crack
+	# If SHA-1
+	elif algorithm == "sha1":
+		# Set attack decorator to machete_sha1
+		attack = machete_sha1.crack
 		
-	## If SHA-256
-	#elif algorithm == "sha256":
-		## Set attack decorator to machete_sha256
-		#attack = machete_sha256.crack
+	# If SHA-256
+	elif algorithm == "sha256":
+		# Set attack decorator to machete_sha256
+		attack = machete_sha256.crack
 		
-	## If SHA-512
-	#elif algorithm == "sha512":
-		## Set attack decorator to machete_sha512
-		#attack = machete_sha512.crack
+	# If SHA-512
+	elif algorithm == "sha512":
+		# Set attack decorator to machete_sha512
+		attack = machete_sha512.crack
 		
-	## If DSA
-	#elif algorithm == "dsa":
-		## Set attack decorator to machete_dsa
-		#attack = machete_dsa.crack
+	# If DSA
+	elif algorithm == "dsa":
+		# Set attack decorator to machete_dsa
+		attack = machete_dsa.crack
 		
-	## If Whirlpool
-	#elif algorithm == "whirlpool":
-		## Set attack decorator to machete_whirlpool
-		#attack = machete_whirlpool
+	# If Whirlpool
+	elif algorithm == "whirlpool":
+		# Set attack decorator to machete_whirlpool
+		attack = machete_whirlpool
 		
 	# Return attack
 	return attack

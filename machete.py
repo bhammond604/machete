@@ -18,11 +18,11 @@ sys.path.append("lib/")
 # Import custom modules
 import lib.misc as machete
 import lib.machete_md5 as machete_md5
-#import lib.machete_sha1 as machete_sha1
-#import lib.machete_sha256 as machete_sha256
-#import lib.machete_sha512 as machete_sha512
-#import lib.machete_dsa as machete_dsa
-#import lib.machete_whirlpool as machete_whirlpool
+import lib.machete_sha1 as machete_sha1
+import lib.machete_sha256 as machete_sha256
+import lib.machete_sha512 as machete_sha512
+import lib.machete_dsa as machete_dsa
+import lib.machete_whirlpool as machete_whirlpool
 
 
 
