@@ -2,29 +2,24 @@
 # Version 1.0.0
 # By Brandon Hammond
 
+# Set the version and author
+__version__ = "1.0.1"
+__author__ = "Brandon Hammond"
 
-
-# Import standard modules
+# Import required modules
 import os
 import sys
 import time
 import getopt
 import string
 import threading
-
-# Add lib/ to module path
-sys.path.append("lib/")
-
-# Import custom modules
-import lib.misc as machete
-import lib.machete_md5 as machete_md5
-import lib.machete_sha1 as machete_sha1
-import lib.machete_sha256 as machete_sha256
-import lib.machete_sha512 as machete_sha512
-import lib.machete_dsa as machete_dsa
-import lib.machete_whirlpool as machete_whirlpool
-
-
+import core.misc as machete
+import core.machete_md5 as machete_md5
+import core.machete_sha1 as machete_sha1
+import core.machete_sha256 as machete_sha256
+import core.machete_sha512 as machete_sha512
+import core.machete_dsa as machete_dsa
+import core.machete_whirlpool as machete_whirlpool
 
 # Define main() function
 def main():
@@ -51,7 +46,20 @@ def main():
 		# If -h or --help option used
 		if opt in ("-h", "--help"):
 			# Print help message and exit
-			print("USAGE: machete [h|v|a {algorithm}|t {hash}|w {wordlist}|-m]")
+			print("USAGE:")
+			print("\tmachete [-h] [-v] [-m] [-a ALGORITHM] [-t HASH] [-w WORDLIST]")
+			print("")
+			print("Crack a hash using a wordlist attack. Supports MD5, SHA1, SHA256, SHA512, DSA, and Whirlpool hashes.")
+			print("")
+			print("REQUIRED ARGUMENTS:")
+			print("\t-a, --algorithm ALGORITHM\tSpecify the algorithm to use")
+			print("\t-t, --hash HASH\tSpecify the hash to crack")
+			print("\t-w, --wordlist WORDLIST\tSpecify the wordlist to use")
+			print("")
+			print("OPTIONAL ARGUMENTS:")
+			print("\t-h, --help\tDisplay this message and exit")
+			print("\t-v, --version\tDisplay version info and exit")
+			print("\t-m, --threading\tEnable threading. Off by default"
 			exit(0)
 		
 		# If -v or --version option is used
@@ -59,7 +67,7 @@ def main():
 			# Print version message and exit
 			print("Machete Hash Cracker")
 			print("Version {}".format(__version__))
-			print("By Brandon Hammond")
+			print("By {}".format(__author__))
 			exit(0)
 		
 		# If -a or --alg option is used
