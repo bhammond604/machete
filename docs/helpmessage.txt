@@ -1,0 +1,14 @@
+USAGE:
+	machete [-h] [-v] [-a ALGORITHM] [-t TARGET HASH] [-w WORDLIST]
+	
+Crack a hash taking advantage of multiprocessing. Uses a hyper-efficient
+algorithm that supports MD5, SHA1, SHA256, SHA512, DSA, and Whirlpool algorithms.
+
+REQUIRED ARGUMENTS:
+	-a, --algorithm	ALGORITHM	Specify the algorithm to use when cracking the hash.
+	-t, --hash TARGET HASH	Specify the hash to be cracked. 
+	-w, --wordlist WORDLIST	Specify the wordlist to be used in the attack.
+	
+OPTIONAL ARGUMENTS:
+	-h, --help	Display this message and exit.
+	-v, --version Display version message and exit.

@@ -1,0 +1,51 @@
+Workflow diagram for Machete hash cracker
+By Brandon Hammond
+
+==========KEY==========
+[Step] Step number
+F = Flag checking
+E = Error checking here
+P = Sepererate child process
+T = Seperate thread
+VP = Variable number of child processes
+VT = Variable number of threads
+
+==========WORKFLOW==========
+[Process command line arguments] 1 E
+|
+|
+[Apply settings set by command line arguments] 2 E
+|
+|
+[Determine how many child processes to spawn, and split the wordlist accordingly] 3
+|
+|
+|
+[Spawn the child processes] 4 -----> [Determine how many threads to spawn per process, and split the wordlist accordingly] 5 VP -----> [Spawn the threads] 6 VP -----> [Attempt to crack the hash using the wordlist] 7 VP F
+|									 |
+|									 |
+|									 [Exit cleanly] 8
+|
+|
+[Exit entirely] 9
+
+==========DESCRIPTION==========
+Step 1. Using the Getopt module, process command line arguments, cleanly raising an error if Getopt fails.
+
+Step 2. Attempt to apply the command line arguments, raising an error if an invalid option was specified.
+
+Step 3. Dump the wordlist into RAM and divide it into multiple lists based on the size of the initial wordlist. These
+newly generated lists will be sent to the child processes.
+
+Step 4. Based on the length of the resulting wordlist sent to the child process, determine how many threads the child process
+should spawn, and split the wordlist evenly based on the number of threads.
+
+Step 5. Spawn the child processes, waiting for them to finish before continuing.
+
+Step 6. In the child processes, spawn the threads, waiting for them to finish before continuing.
+
+Step 7. Have the threads use their section of the wordlist to attempt to crack the hash using a dictionary attack.
+
+Step 8. Once the threads finish, clean up everything, making sure the threads have stopped.
+
+Step 9. Kill the child processes
