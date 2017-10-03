@@ -15,7 +15,7 @@ def split_list(wordlist):
 	# Purpose: Split wordlistlist into several smaller lists for threading
 	
 	# Set the list size
-	list_size = 10000
+	list_size = 100000
 	
 	# Split the main list into a 2D list
 	for i in range(0, len(wordlist), list_size):

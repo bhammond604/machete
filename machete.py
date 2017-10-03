@@ -54,7 +54,7 @@ def main():
 			print("\tmachete [-h] [-v] [-a ALGORITHM] [-t TARGET HASH] [-w WORDLIST]")
 			print("")
 			print("Crack a hash taking advantage of multiprocessing. Uses a hyper-efficient")
-			print("algorithm that supports MD5, SHA1, SHA256, SHA512, DSA, and Whirlpool algorithms.")
+			print("algorithm that supports MD5, SHA1, SHA256, and SHA512 algorithms.")
 			print("")
 			print("REQUIRED ARGUMENTS:")
 			print("\t-a, --algorithm ALGORITHM\tSpecify the algorithm to use when cracking the hash.")
