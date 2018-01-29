@@ -151,13 +151,23 @@ def main():
 	
 	# Build a for loop to spawn the child processes
 	for i in range(0, len(process_lists)):
+		# If verbosity is wanted
+		if display_verbose == True:
+			# Display process starting message
+			print("[**] Starting child process {}".format(i))
 		
 		# Create the object for the new child process
 		child_process = multiprocessing.Process(target = child.main, args = (process_lists[i], algorithm, target_hash,))
 
 		# Start the new child process
 		child_process.start()
-
+		
+	# If verbosity is wanted
+	if display_verbose == True:
+		# Display beginning crack message
+		print("==============================")
+		print("[**] Beginning crack")
+		
 # Make sure not running as a module and call main()
 if __name__ == "__main__":
 	main()
