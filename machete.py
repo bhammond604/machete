@@ -1,9 +1,9 @@
 # Machete Hash Cracker
-# Version 2.0.0
+# Version 2.0.1
 # By Brandon Hammond
 
 # Define the version and author
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 __author__ = "Brandon Hammond" 
 
 # Import required modules
@@ -34,13 +34,14 @@ def main():
 	
 	# Attempt to call getopt.getopt() to read and parse command line arguments
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hva:t:w:", ("help", "version", "algorithm=", "hash=", "wordlist="))
+		opts, args = getopt.getopt(sys.argv[1:], "hvVa:t:w:", ("help", "version", "Verbose", "algorithm=", "hash=", "wordlist="))
 	except getopt.GetoptError:
 		# Display error message and exit
 		print("[E] An error occured processing command line arguments!")
 		exit(0)
 		
 	# Predefine important variables with their default values
+	display_verbose = False
 	algorithm = None
 	target_hash = None
 	wordlist = None
@@ -51,7 +52,7 @@ def main():
 		if opt in ("-h", "--help"):
 			# Display the help message and exit
 			print("USAGE:")
-			print("\tmachete [-h] [-v] [-a ALGORITHM] [-t TARGET HASH] [-w WORDLIST]")
+			print("\tmachete [-h] [-v] [-V] [-a ALGORITHM] [-t TARGET HASH] [-w WORDLIST]")
 			print("")
 			print("Crack a hash taking advantage of multiprocessing. Uses a hyper-efficient")
 			print("algorithm that supports MD5, SHA1, SHA256, and SHA512 algorithms.")
@@ -64,6 +65,7 @@ def main():
 			print("OPTIONAL ARGUMENTS:")
 			print("\t-h, --help\tDisplay this message and exit.")
 			print("\t-v, --version\tDisplay version message and exit.")
+			print("\t-V, --Verbose\tDisplay verbose output")
 			exit(0)
 			
 		# If the -v or --version option is used
@@ -73,6 +75,12 @@ def main():
 			print("Version {}".format(__version__))
 			print("By {}".format(__author__))
 			exit(0)
+			
+		# If the -V or --verbose option is used
+		elif opt in ("-V", "--verbose"):
+			# Specify that verbose output should be used
+			display_verbose = True
+			
 			
 		# If the -a or --algorithm option is used
 		elif opt in ("-a", "--algorithm"):
@@ -108,6 +116,26 @@ def main():
 	print("[*] Target Hash: {}".format(target_hash))
 	print("[*] Algorithm: {}".format(algorithm))
 	print("[*] Wordlist: {}".format(wordlist))
+	
+	# If verbosity is wanted
+	if display_verbose == True:
+		# Display more details
+		
+		# Open the wordlist to count lines
+		wordlist_open = open(wordlist, "r")
+		
+		# Initialize line_count
+		line_count = 0
+	
+		# Build a for loop to count lines
+		for line in wordlist_open:
+			line_count = line_count + 1
+			
+		# Close the wordlist
+		wordlist_open.close()
+		
+		# Display aditional info
+		print("[**] Wordlist Length: {}".format(str(line_count)))
 	print("==============================")
 	
 	# Attempt to open the wordlist and dump it into RAM
