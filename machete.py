@@ -1,10 +1,12 @@
+#!/usr/bin/python3
+
 # Machete Hash Cracker
 # Version 2.0.1
 # By Brandon Hammond
 
 # Define the version and author
-__version__ = "2.0.1"
-__author__ = "Brandon Hammond" 
+global version = "2.0.2"
+global author = "Brandon Hammond" 
 
 # Import required modules
 import os
@@ -28,13 +30,13 @@ def split_list(wordlist):
 		yield wordlist[i:i + list_size]
 
 # Define the main() function
-def main():
+def main(argv):
 	# Function: main()
 	# Purpose: Process command line arguments and provide base workflow
 	
 	# Attempt to call getopt.getopt() to read and parse command line arguments
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hvVa:t:w:", ("help", "version", "Verbose", "algorithm=", "hash=", "wordlist="))
+		opts, args = getopt.getopt(argv, "hvVa:t:w:", ("help", "version", "Verbose", "algorithm=", "hash=", "wordlist="))
 	except getopt.GetoptError:
 		# Display error message and exit
 		print("[E] An error occured processing command line arguments!")
@@ -141,9 +143,9 @@ def main():
 	# Attempt to open the wordlist and dump it into RAM
 	try:
 		open_wordlist = open(wordlist, "r")
-	except IOError:
+	except IOError as err_msg:
 		# Display an error message and exit
-		print("[E] Could not open the wordlist!")
+		print("[E] Could not open the wordlist: {}".format(err_msg))
 		exit(0)
 		
 	# Split the wordlist into several smaller lists
@@ -170,4 +172,4 @@ def main():
 		
 # Make sure not running as a module and call main()
 if __name__ == "__main__":
-	main()
+	main(sys.argv[1:]
